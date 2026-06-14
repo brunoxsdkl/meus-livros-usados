@@ -58,6 +58,45 @@
       z-index: 0;
     }
 
+    .petals-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .petal {
+      position: absolute;
+      top: -30px;
+      opacity: 0;
+      animation: petalFall linear infinite;
+    }
+
+    .petal svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 0 4px rgba(248, 176, 200, 0.2));
+    }
+
+    @keyframes petalFall {
+      0% {
+        opacity: 0;
+        transform: translateY(0) translateX(0) rotate(0deg) scale(0.6);
+      }
+      5% {
+        opacity: 0.75;
+      }
+      90% {
+        opacity: 0.4;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(calc(100vh + 40px)) translateX(var(--sway)) rotate(var(--spin)) scale(0.9);
+      }
+    }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -398,6 +437,7 @@
 <body>
   <div class="bg-decoration"></div>
   <div class="bg-decoration-2"></div>
+  <div class="petals-container" id="petalsContainer"></div>
 
   <div class="container">
     <header>
@@ -494,7 +534,32 @@
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const filter = btn.dataset.filter;
-        cards.forEach(card => {
+    (function createPetals() {
+      const container = document.getElementById('petalsContainer');
+      const colors = ['#f8b0c8', '#f5a0c0', '#fcc4d8', '#f2a0b8', '#fdd6e8', '#f7b8cc', '#f09ab4', '#fec8dc'];
+      const petalCount = 22;
+      for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        const size = 14 + Math.random() * 14;
+        petal.style.width = size + 'px';
+        petal.style.left = Math.random() * 100 + '%';
+        petal.style.animationDuration = (10 + Math.random() * 12) + 's';
+        petal.style.animationDelay = (Math.random() * 16 - 2) + 's';
+        petal.style.setProperty('--sway', (Math.random() > 0.5 ? '' : '-') + (100 + Math.random() * 200) + 'px');
+        petal.style.setProperty('--spin', (Math.random() > 0.5 ? '' : '-') + (360 + Math.random() * 720) + 'deg');
+        const hue = 320 + Math.floor(Math.random() * 30);
+        const sat = 30 + Math.floor(Math.random() * 30);
+        const lit = 65 + Math.floor(Math.random() * 20);
+        petal.innerHTML = `<svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 3C12 10 3 14 3 18s6 9 12 9c5 0 5-4 6-8s3-9 6-11c3-2 5-2 5-5s-3-5-6-5c-3 0-5 1-6 2-1 1-2 2-5 3z" fill="hsl(${hue},${sat}%,${lit}%)" opacity="0.85"/>
+          <path d="M15 6c-2 5-9 8-9 12s5 7 9 7c4 0 4-3 5-7s2-7 5-9" fill="none" stroke="hsl(${hue},${sat}%,${lit-8}%)" stroke-width="0.5" opacity="0.3"/>
+        </svg>`;
+        container.appendChild(petal);
+      }
+    })();
+
+    cards.forEach(card => {
           if (filter === 'all' || card.dataset.category === filter) {
             card.style.display = 'block';
             card.style.animation = 'fadeIn 0.4s ease forwards';
