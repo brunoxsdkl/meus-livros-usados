@@ -529,14 +529,8 @@
     const filterBtns = document.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('.book-card');
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.dataset.filter;
     (function createPetals() {
       const container = document.getElementById('petalsContainer');
-      const colors = ['#f8b0c8', '#f5a0c0', '#fcc4d8', '#f2a0b8', '#fdd6e8', '#f7b8cc', '#f09ab4', '#fec8dc'];
       const petalCount = 22;
       for (let i = 0; i < petalCount; i++) {
         const petal = document.createElement('div');
@@ -558,6 +552,12 @@
         container.appendChild(petal);
       }
     })();
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
 
     cards.forEach(card => {
           if (filter === 'all' || card.dataset.category === filter) {
