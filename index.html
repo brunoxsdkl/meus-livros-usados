@@ -446,21 +446,174 @@
 
     @media (max-width: 640px) {
       .container {
-        padding: 24px 16px;
+        padding: 16px 12px;
       }
+
+      header {
+        margin-bottom: 32px;
+      }
+
+      header .badge {
+        font-size: 10px;
+        padding: 4px 12px;
+        margin-bottom: 14px;
+      }
+
       header h1 {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
       }
-      .books-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
+
+      header h1 .tae {
+        font-size: 0.8rem;
+        letter-spacing: 4px;
       }
+
+      header p {
+        font-size: 14px;
+        margin-top: 12px;
+      }
+
+      .divider {
+        margin-top: 16px;
+      }
+
       .filter-bar {
-        gap: 8px;
+        gap: 6px;
+        margin-bottom: 24px;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
       }
+
+      .filter-bar::-webkit-scrollbar {
+        display: none;
+      }
+
       .filter-btn {
         font-size: 12px;
-        padding: 6px 14px;
+        padding: 8px 16px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .books-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .book-card .image-box {
+        aspect-ratio: 3 / 4;
+      }
+
+      .book-card .info {
+        padding: 12px 14px 16px;
+      }
+
+      .book-card .info .category {
+        font-size: 9px;
+        letter-spacing: 1px;
+        margin-bottom: 4px;
+      }
+
+      .book-card .info h3 {
+        font-size: 14px;
+      }
+
+      .book-card .info .author {
+        font-size: 11px;
+        margin-bottom: 8px;
+      }
+
+      .book-card .info .price {
+        font-size: 17px;
+      }
+
+      .book-card .info .price small {
+        font-size: 11px;
+        display: block;
+        margin-top: 2px;
+      }
+
+      .whatsapp-btn {
+        padding: 10px 14px;
+        font-size: 12px;
+        margin-top: 10px;
+        gap: 6px;
+      }
+
+      .whatsapp-btn svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .book-card .status-badge {
+        top: 8px;
+        right: 8px;
+        font-size: 9px;
+        padding: 3px 8px;
+      }
+
+      .book-card .image-box .photo-hint {
+        font-size: 9px;
+        padding: 4px 10px;
+        bottom: 8px;
+      }
+
+      .book-card:hover .image-box .photo-hint {
+        bottom: 10px;
+      }
+
+      .add-card {
+        min-height: 0;
+        padding: 24px 16px;
+        aspect-ratio: 3 / 4;
+      }
+
+      .add-card .plus {
+        font-size: 32px;
+      }
+
+      .add-card span {
+        font-size: 12px;
+      }
+
+      .add-card small {
+        font-size: 10px;
+      }
+
+      footer {
+        padding: 40px 0 16px;
+        font-size: 11px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .books-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .container {
+        padding: 12px 8px;
+      }
+
+      header h1 {
+        font-size: 1.3rem;
+      }
+
+      .book-card .info h3 {
+        font-size: 12px;
+      }
+
+      .book-card .info .price {
+        font-size: 15px;
+      }
+
+      .whatsapp-btn {
+        padding: 8px 10px;
+        font-size: 11px;
       }
     }
   </style>
@@ -686,7 +839,7 @@
 
     (function createPetals() {
       const container = document.getElementById('petalsContainer');
-      const petalCount = 22;
+      const petalCount = window.innerWidth < 640 ? 10 : 22;
       for (let i = 0; i < petalCount; i++) {
         const petal = document.createElement('div');
         petal.className = 'petal';
