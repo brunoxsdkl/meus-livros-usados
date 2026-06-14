@@ -213,6 +213,14 @@
       transform: scale(1.1);
     }
 
+    .book-card .image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+    }
+
     .book-card .image-box .photo-hint {
       position: absolute;
       bottom: 16px;
@@ -411,15 +419,15 @@
     <div class="books-grid" id="booksGrid">
       <div class="book-card" data-category="romance">
         <div class="image-box">
-          <div class="placeholder-icon">&#128218;</div>
-          <div class="photo-hint">📸 Adicionar foto</div>
+          <img src="images/glitter-melodia-caos.jpeg" alt="Glitter, Vol.1: Melodia do Caos">
+          <div class="photo-hint">📸 Foto do livro</div>
         </div>
         <div class="status-badge">Disponível</div>
         <div class="info">
           <div class="category">Romance</div>
-          <h3>Nome do Livro</h3>
-          <div class="author">Autor(a)</div>
-          <div class="price">R$ 25 <small>ou troco</small></div>
+          <h3>Glitter, Vol.1: Melodia do Caos</h3>
+          <div class="author">&nbsp;</div>
+          <div class="price">R$ 50,00 <small>+ frete por conta do comprador</small></div>
         </div>
       </div>
 
